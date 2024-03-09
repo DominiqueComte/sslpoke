@@ -53,3 +53,4 @@ etc...
 ## source
 
 This class or similar ones are a bit everywhere, I couldn't find which one was the first one.
+Possibly, from [this file](https://confluence.atlassian.com/download/attachments/117455/SSLPoke.java) on the Atlassian website.
