@@ -42,14 +42,14 @@ jobs:
 
       - name: Package Linux artifact
         if: runner.os == 'Linux'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: SSLPoke ${{ runner.os }} native image with SubstrateVM for Java ${{ matrix.java-version }}
           path: target/native-image/SSLPoke
 
       - name: Package Windows artifacts
         if: runner.os == 'Windows'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: SSLPoke ${{ runner.os }} native image with SubstrateVM for Java ${{ matrix.java-version }}
           path: target/native-image/SSLPoke.exe
