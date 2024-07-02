@@ -26,18 +26,17 @@ jobs:
         with:
           java-version: ${{ matrix.java-version }}
           distribution: ${{ matrix.graalvm-version }}
-          components: 'native-image'
 
       - name: Report Java version
         run: |
           java -version
           javac -version
       - name: Build with Maven Wrapper (Linux)
-        run: ./mvnw -V -B package
+        run: ./mvnw -V -B -Pnative package
         if: runner.os == 'Linux'
 
       - name: Build with Maven Wrapper (Windows)
-        run: .\mvnw.cmd -V -B package
+        run: .\mvnw.cmd -V -B -Pnative package
         if: runner.os == 'Windows'
 
       - name: Package Linux artifact
