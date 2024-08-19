@@ -2,10 +2,7 @@ package org.valsgarth.ssl;
 
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
-import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Establish an SSL connection to a host and port, write a byte and print the response.
@@ -13,15 +10,10 @@ import java.util.logging.Logger;
  */
 @SuppressWarnings({"java:S2629"})
 public class SSLPoke {
-	private static final Logger LOG;
-	static {
-		System.setProperty("java.util.logging.SimpleFormatter.format", "%1$tF %1$tT\t%4$-7s\t%5$s%n");
-		LOG = Logger.getLogger(SSLPoke.class.getName());
-	}
 
 	public static void main(String[] args) {
 		if (args.length != 2) {
-			LOG.info("Usage: %s <host> <port>".formatted(SSLPoke.class.getName()));
+			System.err.printf("Usage: %s <host> <port>%n", SSLPoke.class.getName());
 			System.exit(1);
 		}
 
@@ -36,17 +28,19 @@ public class SSLPoke {
 		try {
 			SSLSocketFactory sslsocketfactory = (SSLSocketFactory) SSLSocketFactory.getDefault();
 			try (SSLSocket sslsocket = (SSLSocket) sslsocketfactory.createSocket(host, port);
-				 InputStream in = sslsocket.getInputStream();
+				 //kept to be able to get some debug output, see below
+				 // InputStream in = sslsocket.getInputStream();
 				 OutputStream out = sslsocket.getOutputStream()
 			) {
 				// Write a test byte to get a reaction :)
 				out.write(1);
 
-				LOG.fine("%s".formatted(new String(in.readAllBytes())));
-				LOG.info("Successfully connected");
+				//some debug output, prints the actual server response
+				// System.out.printf("%s%n".formatted(new String(in.readAllBytes())));
+				System.out.println("Successfully connected");
 			}
 		} catch (Exception exception) {
-			LOG.log(Level.SEVERE, "Exception received while connecting", exception);
+			System.err.printf("Exception received while connecting: %s", exception);
 			rc = 1;
 		}
 		return rc;
