@@ -14,12 +14,12 @@ or do a native build (that needs a GraalVM JDK)
 
 ## Usage
 
-### with the JAR file
+### with the JAR file and the default trust store
 ```shell
-java -Djavax.net.ssl.trustStore=[client-truststore-path] org.valsgarth.ssl.SSLPoke [target-hostname] [port]
+java SSLPoke [target-hostname] [port]
 ```
 
-### with the native program
+### with the native program and the default trust store
 ```shell
 sslpoke [target-hostname] [port]
 ```
