@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - name: Git checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up GraalVM ${{ matrix.graalvm-version }} for Java ${{ matrix.java-version }}
         uses: graalvm/setup-graalvm@v1
